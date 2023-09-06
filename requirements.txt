@@ -1,0 +1,14 @@
+bertopic==0.15.0
+deep_translator==1.11.4
+langdetect==1.0.9
+matplotlib==3.7.2
+numpy==1.24.4
+openpyxl==3.0.9
+pandas==2.0.3
+plotly==5.15.0
+scikit_learn==1.2.2
+seaborn==0.12.2
+sentence_transformers==2.2.2
+streamlit==1.24.1
+streamlit_scrollable_textbox==0.0.3
+transformers==4.31.0
