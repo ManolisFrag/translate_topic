@@ -176,7 +176,8 @@ elif tab == "Analyse Feedback":
                 "Visualize documents",
                 "Topic Hierarchy",
                 "Barchart",
-                "Topics over time"
+                "Topics over time",
+                "Representative docs per topic"
             ]
             selected_visualization = st.selectbox("Select Visualization", visualization_options)
 
@@ -192,4 +193,20 @@ elif tab == "Analyse Feedback":
             elif selected_visualization == "Topics over time":
                 time_fig = area_over_time(trained_model, new_df, new_feedback_column, datetime_column)
                 st.plotly_chart(time_fig)
+            elif selected_visualization == "Representative docs per topic":    
+                st.write(trained_model.get_representative_docs())
 
+            result = pd.merge(new_df[feedback_column], 
+                              trained_model.get_document_info(new_df[feedback_column]),
+                              left_on=feedback_column,
+                              right_on='Document',
+                              how = 'left'
+                              )
+
+            feedback_and_docs = convert_df(result)
+            st.download_button(
+                label="Download documents and topics",
+                data=feedback_and_docs,
+                file_name='document_info.csv',
+                mime='text/csv',
+            )
